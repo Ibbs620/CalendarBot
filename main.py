@@ -23,16 +23,11 @@ def getdayofweek():
 @bot.command()
 async def commands(ctx):
   await ctx.channel.send(
-    '```!commands\nLists all the commands (Including the one you just typed)\n\n!day\nTells you what day it is today\n\n!list <list>\nLists all the phrases in the selected list (greeting, name, today)\n\n!add <list> <phrase>\nAdds a phrase to the selected list (greeting, name, today). Phrase must be surrounded by "quotations".\n\n!remove <list> <index>\nRemoves a phrase from the selected list at the specified index. (Tip: use !list <list> to get the index number of the phrase)\n\n!timeleft\nTells you the time left until the next good morning message in seconds. (Because fuck you that\'s why)```')
+    '```!commands\nLists all the commands (Including the one you just typed)\n\n!day\nTells you what day it is today\n\n!list <list>\nLists all the phrases in the selected list (greeting, name, today)\n\n!add <list> <phrase>\nAdds a phrase to the selected list (greeting, name, today). Phrase must be surrounded by "quotations".\n\n!remove <list> <index>\nRemoves a phrase from the selected list at the specified index. (Tip: use !list <list> to get the index number of the phrase)```')
 @bot.command()
 async def day(ctx):
     s= random.choice(today) + " " + dayofweek[getdayofweek()] + '.\n'
     await ctx.channel.send(s + video[getdayofweek()])
-
-@bot.command()
-async def timeleft(ctx):
-  t = datetime(2021, 2, 10, 12, 45) - datetime.now()
-  await ctx.channel.send(str(round(t.total_seconds())) + " seconds until " + dayofweek[(getdayofweek() + 1) % 7] + ", " + random.choice(name) + "!")
 
 @bot.command()
 async def add(ctx, arg1, arg2):
